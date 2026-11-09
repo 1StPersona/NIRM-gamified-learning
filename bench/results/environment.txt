@@ -1,0 +1,7 @@
+CPU(s):                                  4
+Model name:                              Intel(R) Xeon(R) Processor @ 2.10GHz
+               total        used        free      shared  buff/cache   available
+Mem:            15Gi       656Mi        14Gi        16Mi       1.0Gi        15Gi
+6.18.44-fc-v310
+Python 3.13.16
+Redis server v=7.0.15 sha=00000000:0 malloc=jemalloc-5.3.0 bits=64 build=d064f9f48c901a92

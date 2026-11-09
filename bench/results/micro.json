@@ -1,0 +1,36 @@
+{
+  "python": "3.13.16",
+  "machine": "x86_64",
+  "results": {
+    "p_success": {
+      "median_us": 0.088,
+      "min_us": 0.087,
+      "max_us": 0.092
+    },
+    "elo_update": {
+      "median_us": 0.169,
+      "min_us": 0.162,
+      "max_us": 0.175
+    },
+    "select_task_50": {
+      "median_us": 7.366,
+      "min_us": 7.225,
+      "max_us": 7.49
+    },
+    "xp_for_solution": {
+      "median_us": 0.236,
+      "min_us": 0.231,
+      "max_us": 0.239
+    },
+    "level_for_xp": {
+      "median_us": 0.575,
+      "min_us": 0.553,
+      "max_us": 0.6
+    },
+    "engagement_index": {
+      "median_us": 1.162,
+      "min_us": 1.155,
+      "max_us": 1.178
+    }
+  }
+}

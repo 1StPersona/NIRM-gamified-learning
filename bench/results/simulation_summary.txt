@@ -1,0 +1,8 @@
+adaptive K=0.1: rmse_theta=0.584, corr_theta=0.928, success_rate_2nd_half=0.704, auc_elo=0.570, auc_static=0.536, logloss_elo=0.568, sd_success=0.003
+adaptive K=0.2: rmse_theta=0.441, corr_theta=0.915, success_rate_2nd_half=0.691, auc_elo=0.551, auc_static=0.545, logloss_elo=0.593, sd_success=0.002
+adaptive K=0.4: rmse_theta=0.624, corr_theta=0.914, success_rate_2nd_half=0.691, auc_elo=0.541, auc_static=0.540, logloss_elo=0.606, sd_success=0.002
+adaptive K=0.8: rmse_theta=1.831, corr_theta=0.910, success_rate_2nd_half=0.694, auc_elo=0.537, auc_static=0.543, logloss_elo=0.613, sd_success=0.002
+random   K=0.1: rmse_theta=0.478, corr_theta=0.943, success_rate_2nd_half=0.509, auc_elo=0.814, auc_static=0.780, logloss_elo=0.540, sd_success=0.009
+random   K=0.2: rmse_theta=0.366, corr_theta=0.933, success_rate_2nd_half=0.509, auc_elo=0.821, auc_static=0.780, logloss_elo=0.522, sd_success=0.009
+random   K=0.4: rmse_theta=0.464, corr_theta=0.904, success_rate_2nd_half=0.509, auc_elo=0.820, auc_static=0.780, logloss_elo=0.521, sd_success=0.009
+random   K=0.8: rmse_theta=0.711, corr_theta=0.844, success_rate_2nd_half=0.509, auc_elo=0.810, auc_static=0.780, logloss_elo=0.543, sd_success=0.009
