@@ -22,7 +22,10 @@ services/gamification_api FastAPI-сервис: POST /events/submission, GET /le
 tests/                   35 тестов pytest (один требует Redis)
 simulation/              калибровка шага K на синтетических студентах
 bench/                   микро- и нагрузочные бенчмарки, результаты и графики
-docs/lectures/           задания к лекциям 1–9 (Markdown)
+analysis/                статистика и рисунки предварительных результатов
+paper/                   статья в шаблоне IEEE (LaTeX, BibTeX, PDF)
+presentation/            доклад и постер A1 (python -m presentation.build)
+docs/lectures/           задания к лекциям 1–15 (Markdown)
 docs/word/               те же задания в Word (оформление КазНИТУ)
 ```
 
@@ -53,6 +56,13 @@ make report                      # bench/results/load_summary.md, bench/plots/lo
 
 Окружение, на котором получены результаты, описано в `bench/results/environment.txt`. Абсолютные числа нагрузочного теста зависят от машины, сравнивать стоит соотношения.
 
+## Предварительные результаты (лекции 10–13)
+
+- Адаптивный выбор задач даёт посильную задачу (P(успех) 0,5–0,85) в 79 % попыток против 40 % при общем линейном порядке; сильнее всего выигрывают слабые студенты.
+- Холодный старт: сильные студенты первые 15 попыток получают слишком лёгкие задачи; старт по пре-тесту поднимает их долю посильных задач с 0,64 до 0,81.
+- На 10 % случайно выданных задач Эло прогнозирует успех точнее статических меток (AUC 0,81 против 0,78); при другой модели ответов выигрыш вдвое меньше.
+- Воспроизвести: `make policies && make analyze` (seed 42), статья — `paper/`.
+
 ## Основные результаты (лекция 8)
 
 - Вся модель занимает меньше 10 мкс на событие; дольше всего выбор задачи из 50 (7,4 мкс).
@@ -75,6 +85,12 @@ make report                      # bench/results/load_summary.md, bench/plots/lo
 | 7 | Планирование эксперимента и метрики | [md](docs/lectures/lecture-7.md) · [docx](docs/word/Лекция_7_задание.docx) |
 | 8 | Эксперименты в системных и серверных исследованиях | [md](docs/lectures/lecture-8.md) · [docx](docs/word/Лекция_8_задание.docx) |
 | 9 | Репозиторий, CI и воспроизводимость | [md](docs/lectures/lecture-9.md) · [docx](docs/word/Лекция_9_задание.docx) |
+| 10 | Анализ результатов и визуализация | [md](docs/lectures/lecture-10.md) · [docx](docs/word/Лекция_10_задание.docx) |
+| 11 | Научное письмо | [md](docs/lectures/lecture-11.md) · [docx](docs/word/Лекция_11_задание.docx) |
+| 12 | Оформление: LaTeX и шаблон IEEE | [md](docs/lectures/lecture-12.md) · [docx](docs/word/Лекция_12_задание.docx) |
+| 13 | Рецензирование и подача статьи | [md](docs/lectures/lecture-13.md) · [docx](docs/word/Лекция_13_задание.docx) |
+| 14 | Доклад, постер и вопросы | [md](docs/lectures/lecture-14.md) · [docx](docs/word/Лекция_14_задание.docx) |
+| 15 | Этика, воспроизводимость и влияние | [md](docs/lectures/lecture-15.md) · [docx](docs/word/Лекция_15_задание.docx) |
 
 ## Лицензия
 

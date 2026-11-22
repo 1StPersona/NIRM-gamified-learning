@@ -44,13 +44,13 @@ title: "Практическая работа №15. Этика, воспрои�
 
 **Почему две лицензии.** Apache 2.0 подходит для кода: разрешает повторное использование, в том числе коммерческое, и даёт явную патентную лицензию. Для данных лицензии на программы не предназначены, поэтому результаты симуляций выпущены под CC BY 4.0: использовать можно свободно, ссылка на источник обязательна.
 
-**Воспроизведение «с нуля»** (проверено в чистом окружении Python 3.13):
+**Воспроизведение «с нуля»** (проверено в чистом виртуальном окружении Python 3.13: результаты совпали с опубликованными побайтно):
 
 ```
 git clone https://github.com/1StPersona/NIRM-gamified-learning.git
 cd NIRM-gamified-learning
 pip install -r requirements.txt
-make test          # 35 тестов
+make test          # 35 тестов (один запускается только с Redis)
 make policies      # три политики × 3 варианта симуляции, ~10 с
 make analyze       # статистика → bench/results/preliminary_stats.json, рисунки → docs/img/
 python -m paper.figures && cd paper && pdflatex main && bibtex main && pdflatex main && pdflatex main
