@@ -1,0 +1,11 @@
+{
+  "title": "NIRM-gamified-learning: adaptive gamification model, service and simulation",
+  "upload_type": "software",
+  "description": "Code, simulation scripts and raw results for the study 'Elo-Based Adaptive Gamification for Programming Practice: Model, Simulation Study and Experimental Protocol' (Satbayev University). Reproduce with 'make policies && make analyze'.",
+  "creators": [
+    {"name": "Zakharov, Danila", "affiliation": "Satbayev University"}
+  ],
+  "license": "Apache-2.0",
+  "keywords": ["gamification", "adaptive learning", "Elo rating", "programming education", "simulation"],
+  "language": "eng"
+}

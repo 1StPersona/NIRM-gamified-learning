@@ -9,6 +9,14 @@ test:
 simulate:
 	$(PY) -m simulation.simulate --seed 42 --reps 5 --out bench/results/simulation.csv
 
+policies:
+	$(PY) -m simulation.policies --seed 42 --reps 5
+	$(PY) -m simulation.policies --seed 42 --reps 5 --variant misspec
+	$(PY) -m simulation.policies --seed 42 --reps 5 --variant warm
+
+analyze:
+	$(PY) -m analysis.preliminary
+
 micro:
 	$(PY) -m bench.micro
 
@@ -21,4 +29,4 @@ load:          # сервис должен быть запущен (make up)
 report:
 	$(PY) -m bench.report
 
-.PHONY: install test simulate micro up load report
+.PHONY: install test simulate policies analyze micro up load report

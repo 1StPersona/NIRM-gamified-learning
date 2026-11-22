@@ -1,0 +1,18 @@
+cff-version: 1.2.0
+message: "Если вы используете этот код или данные, пожалуйста, сошлитесь на них так."
+title: "NIRM-gamified-learning: модель адаптивной геймификации, сервис и симуляция"
+type: software
+authors:
+  - family-names: Zakharov
+    given-names: Danila
+    affiliation: Satbayev University
+    # orcid: "https://orcid.org/XXXX-XXXX-XXXX-XXXX"
+repository-code: "https://github.com/1StPersona/NIRM-gamified-learning"
+license: Apache-2.0
+version: 1.0.0
+keywords:
+  - gamification
+  - adaptive learning
+  - Elo rating
+  - programming education
+  - simulation
