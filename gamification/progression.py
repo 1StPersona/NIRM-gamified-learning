@@ -19,7 +19,7 @@ def xp_for_solution(difficulty: float, attempts: int, streak_days: int) -> int:
     if difficulty <= 0:
         raise ValueError("difficulty must be positive")
     bonus = 1 + STREAK_BONUS * min(max(streak_days, 0), STREAK_CAP)
-    return round(BASE_XP * difficulty * ATTEMPT_PENALTY ** attempts * bonus)
+    return round(BASE_XP * difficulty * ATTEMPT_PENALTY ** (attempts - 1) * bonus)
 
 
 def xp_to_reach(level: int) -> int:
