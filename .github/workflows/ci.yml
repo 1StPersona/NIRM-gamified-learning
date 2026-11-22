@@ -5,7 +5,9 @@ on:
   pull_request:
 
 jobs:
+  # ---------- Continuous Integration ----------
   test:
+    name: CI — тесты и проверки
     runs-on: ubuntu-latest
     services:
       redis:
@@ -20,14 +22,55 @@ jobs:
         with:
           python-version: "3.13"
           cache: pip
-      - run: pip install -r requirements.txt
+      - name: Установка зависимостей
+        run: pip install -r requirements.txt
+      - name: Сборка (компиляция модулей)
+        run: python -m compileall -q gamification services simulation bench
       - name: Модульные и интеграционные тесты
-        run: pytest -v
+        run: pytest -v --junitxml=test-report.xml
       - name: Воспроизводимость симуляции (короткий прогон, фиксированный seed)
         run: python -m simulation.simulate --seed 42 --reps 1 --out /tmp/simulation.csv
       - name: Микробенчмарк (регрессия производительности, только отчёт)
         run: python -m bench.micro
-      - uses: actions/upload-artifact@v4
+      - name: Отчёт о статусе
+        if: always()
+        uses: actions/upload-artifact@v4
         with:
-          name: bench-results
-          path: bench/results/micro.json
+          name: ci-report
+          path: |
+            test-report.xml
+            bench/results/micro.json
+
+  # ---------- Continuous Delivery (только тестовая среда) ----------
+  deploy-staging:
+    name: CD — деплой в staging
+    needs: test                 # запускается только после успешного CI
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    environment: staging        # production не используется
+    steps:
+      - uses: actions/checkout@v4
+      - name: Подготовка артефакта (Docker-образ)
+        run: |
+          docker build -t gamification:${GITHUB_SHA::7} .
+          docker save gamification:${GITHUB_SHA::7} | gzip > image.tar.gz
+          ls -lh image.tar.gz
+      - name: Деплой в тестовую среду
+        run: IMAGE_TAG=${GITHUB_SHA::7} docker compose -f deploy/staging.yml -p staging up -d
+      - name: Проверка запуска приложения (smoke-тест)
+        run: bash deploy/smoke.sh http://localhost:8080
+      - name: Логи тестовой среды
+        if: always()
+        run: docker compose -f deploy/staging.yml -p staging logs --no-color > staging.log; cat staging.log
+      - name: Сохранение артефактов
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: staging-${{ github.sha }}
+          path: |
+            image.tar.gz
+            staging.log
+          retention-days: 7
+      - name: Остановка тестовой среды
+        if: always()
+        run: docker compose -f deploy/staging.yml -p staging down

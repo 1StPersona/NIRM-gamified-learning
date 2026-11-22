@@ -1,0 +1,18 @@
+# Тестовая среда (staging): образ, собранный в CI, + отдельный Redis.
+# Порт 8080, чтобы не пересекаться с локальной разработкой (8000).
+services:
+  redis:
+    image: redis:7.0
+    command: ["redis-server", "--save", "", "--appendonly", "no"]
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 2s
+      retries: 10
+  gamification:
+    image: gamification:${IMAGE_TAG:-latest}
+    environment:
+      REDIS_URL: redis://redis:6379/0
+    ports: ["8080:8000"]
+    depends_on:
+      redis:
+        condition: service_healthy
